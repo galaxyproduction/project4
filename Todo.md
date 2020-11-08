@@ -1,0 +1,17 @@
+# Project 4 todo list
+- [ ] Add LevelOrderPrint
+  - Print tree level by level visually
+- [ ] Add preOrderPrint and postOrderPrint
+  - Print items in respective order separted by spaces
+- [ ] Add ptrToSuccessor
+  - Finds the node with the smallest key value in the tree
+- [ ] Add getSuccessor
+  - returns the logical successor of item
+- [ ] Modify deleteNode
+  - Modify deleteNode to use the immediate successor
+- [ ] Add printAncestors
+  - Prints the ancestors of a given node
+- [ ] Add mirrorImage
+  - Returns the mirror image of the original tree
+- [ ] Write makeTree
+  - Creates BST from sorted array
