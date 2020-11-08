@@ -304,6 +304,20 @@ void TreeType::operator=(const TreeType &originalTree)
   }
 }
 
+void LevelOrderPrintHelper(const TreeNode* tree, int offset) {
+  if(tree == NULL) return;
+  offset += 1;
+  LevelOrderPrintHelper(tree->right, offset);
+
+  for(int i = 1; i < offset; i++) {
+    cout << '\t';
+  }
+
+  cout << tree->info << endl;
+  LevelOrderPrintHelper(tree->left, offset);
+}
+
 void TreeType::LevelOrderPrint() const
-{ //Implement this function, you May use a data structure
+{
+  LevelOrderPrintHelper(root, 0);
 }

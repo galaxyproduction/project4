@@ -1,5 +1,5 @@
 # Project 4 todo list
-- [ ] Add LevelOrderPrint
+- [x] Add LevelOrderPrint
   - Print tree level by level visually
 - [x] Add preOrderPrint and postOrderPrint
   - Print items in respective order separted by spaces
