@@ -207,17 +207,30 @@ void TreeType::Print() const
   inOrderTraverse(root);
 }
 
+void preOrderPrintHelper(const TreeNode* tree) {
+  if(tree == NULL) return;
+  cout << tree->info << ' ';
+  preOrderPrintHelper(tree->left);
+  preOrderPrintHelper(tree->right);
+}
+
 void TreeType::PreOrderPrint() const
-{ // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "PreOrderPrint:";
+{ 
+  preOrderPrintHelper(root);
+  cout << '\n';
+}
+
+void postOrderPrintHelper(const TreeNode* tree) {
+  if(tree == NULL) return;
+  postOrderPrintHelper(tree->left);
+  postOrderPrintHelper(tree->right);
+  cout << tree->info << ' ';
 }
 
 void TreeType::PostOrderPrint() const
 {
-  // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "Post OrderPrint stub has been called\n";
+  postOrderPrintHelper(root);
+  cout << '\n';
 }
 
 void TreeType::PrintAncestors(int value)

@@ -1,7 +1,7 @@
 # Project 4 todo list
 - [ ] Add LevelOrderPrint
   - Print tree level by level visually
-- [ ] Add preOrderPrint and postOrderPrint
+- [x] Add preOrderPrint and postOrderPrint
   - Print items in respective order separted by spaces
 - [ ] Add ptrToSuccessor
   - Finds the node with the smallest key value in the tree
