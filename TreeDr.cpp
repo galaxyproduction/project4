@@ -100,14 +100,14 @@ int main()
 		else if (command == "GetSuccessor")
 		{
 			inFile >> item;
-			cout << "Logical successor of" << item << "is:\n";
+			cout << "Logical successor of " << item << " is:\n";
 			tree.GetSuccessor(item);
 		}
 		//13
 		else if (command == "PrintAncestorsOf")
 		{
 			inFile >> item;
-			cout << "testing Ancestors of" << item << endl;
+			cout << "testing Ancestors of " << item << endl;
 			tree.PrintAncestors(item);
 		}
 		//14
