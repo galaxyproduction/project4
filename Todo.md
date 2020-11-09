@@ -9,7 +9,7 @@
   - returns the logical successor of item
 - [ ] Modify deleteNode
   - Modify deleteNode to use the immediate successor
-- [ ] Add printAncestors
+- [x] Add printAncestors
   - Prints the ancestors of a given node
 - [x] Add mirrorImage
   - Returns the mirror image of the original tree

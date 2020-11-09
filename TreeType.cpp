@@ -233,11 +233,33 @@ void TreeType::PostOrderPrint() const
   cout << '\n';
 }
 
+void PrintAncestorsHelper(const TreeNode* tree, int value) {
+  if(tree->info == value) {
+    return;
+  }
+
+  if(tree->info > value) {
+    PrintAncestorsHelper(tree->left, value);
+  } else {
+    PrintAncestorsHelper(tree->right, value);
+  }
+
+  cout << tree->info << ' ';
+}
+
 void TreeType::PrintAncestors(int value)
 {
-  // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "PrintAncestors() has been called\n";
+  if(root->info == value)
+    cout << value << " is the root value, No ancestor" << endl;
+
+  bool hasItem = true;
+  GetItem(value, hasItem);
+  if(hasItem) {
+    PrintAncestorsHelper(root, value);
+    cout << endl;
+  } else {
+    cout << "Item is not in the tree" << endl;
+  }
 }
 
 int TreeType::GetSuccessor(int value)
@@ -253,7 +275,7 @@ void mirror(TreeNode *&copy, const TreeNode *originalTree)
 // Post: copy is the root of a tree that is a mirror Image of originalTree.
 { 
   if(originalTree == NULL) return;
-  
+
   copy->info = originalTree->info;
   if(originalTree->right != NULL) {
     copy->left = new TreeNode;
