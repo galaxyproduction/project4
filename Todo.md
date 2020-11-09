@@ -11,7 +11,7 @@
   - Modify deleteNode to use the immediate successor
 - [ ] Add printAncestors
   - Prints the ancestors of a given node
-- [ ] Add mirrorImage
+- [x] Add mirrorImage
   - Returns the mirror image of the original tree
 - [x] Write makeTree
   - Creates BST from sorted array

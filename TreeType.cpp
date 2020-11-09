@@ -251,12 +251,29 @@ int TreeType::GetSuccessor(int value)
 // helper function for Mirror Image
 void mirror(TreeNode *&copy, const TreeNode *originalTree)
 // Post: copy is the root of a tree that is a mirror Image of originalTree.
-{ // implement this function
+{ 
+  if(originalTree == NULL) return;
+  
+  copy->info = originalTree->info;
+  if(originalTree->right != NULL) {
+    copy->left = new TreeNode;
+    mirror(copy->left, originalTree->right);
+  } else {
+    copy->left = NULL;
+  }
+
+  if(originalTree->left != NULL) {
+    copy->right = new TreeNode;
+    mirror(copy->right, originalTree->left);
+  } else {
+    copy->right = NULL;
+  }
 }
 
 void TreeType::mirrorImage(TreeType &t)
 {
-  // calls the helper function mirror
+  t.root = new TreeNode;
+  mirror(t.root, root);
 }
 
 void Destroy(TreeNode *&tree)
