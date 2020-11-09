@@ -13,5 +13,5 @@
   - Prints the ancestors of a given node
 - [ ] Add mirrorImage
   - Returns the mirror image of the original tree
-- [ ] Write makeTree
+- [x] Write makeTree
   - Creates BST from sorted array
