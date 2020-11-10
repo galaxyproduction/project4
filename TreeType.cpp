@@ -133,7 +133,7 @@ void TreeType::DeleteItem(ItemType item)
   if (found)
     Delete(root, item);
   else
-    cout << item << "is not in tree\n";
+    cout << item << " is not in tree\n";
 }
 
 void Delete(TreeNode *&tree, ItemType item)
@@ -178,15 +178,6 @@ void DeleteNode(TreeNode *&tree)
     tree->info = data;
     Delete(tree->left, data); // Delete predecessor node.
   }
-}
-
-TreeNode* TreeType::ptrToSuccessor(TreeNode*& tree) const {
-  if(tree == NULL) return NULL;
-
-  if(tree->left == NULL) 
-    return tree;
-
-  return ptrToSuccessor(tree->left);
 }
 
 //Helper function for DeleteNode
@@ -271,12 +262,38 @@ void TreeType::PrintAncestors(int value)
   }
 }
 
+TreeNode* TreeType::ptrToSuccessor(TreeNode*& tree) const {
+  if(tree == NULL)
+    return NULL;
+
+  if(tree->left == NULL) 
+    return tree;
+
+  return ptrToSuccessor(tree->left);
+}
+
+TreeNode* findItem(TreeNode* tree, int value) {
+  if(tree == NULL)
+    throw ItemNotFound();
+
+  if(tree->info == value)
+    return tree;
+
+  if(tree->info > value)
+    return findItem(tree->left, value);
+
+  return findItem(tree->right, value);
+}
+
 int TreeType::GetSuccessor(int value)
 {
-  // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "GetSuccessor() has been called\n";
-  return 0; //you should change this return statement
+  TreeNode* item = findItem(root, value);
+
+  if(item->right == NULL)
+    return NULL;
+
+  TreeNode* successor = ptrToSuccessor(item->right);
+  return successor->info;
 }
 
 // helper function for Mirror Image

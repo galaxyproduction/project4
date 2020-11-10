@@ -100,8 +100,17 @@ int main()
 		else if (command == "GetSuccessor")
 		{
 			inFile >> item;
-			cout << "Logical successor of " << item << " is:\n";
-			tree.GetSuccessor(item);
+			cout << "Logical successor of " << item << " is: ";
+			try {
+				int successor = tree.GetSuccessor(item);
+				if(successor != NULL) {
+					cout << successor << endl;
+				} else {
+					cout << "NULL\n-99999" << endl;
+				}
+			} catch (ItemNotFound inf) {
+				cout << "Item was not in the tree\n-99999" << endl;
+			}
 		}
 		//13
 		else if (command == "PrintAncestorsOf")

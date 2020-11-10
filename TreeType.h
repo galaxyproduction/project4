@@ -2,6 +2,7 @@
 #include <fstream>
 typedef int ItemType;
 struct TreeNode;
+class ItemNotFound {};
 #include "QueType.cpp"
 class TreeType
 {

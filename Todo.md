@@ -5,7 +5,7 @@
   - Print items in respective order separted by spaces
 - [x] Add ptrToSuccessor
   - Finds the node with the smallest key value in the tree
-- [ ] Add getSuccessor
+- [x] Add getSuccessor
   - returns the logical successor of item
 - [ ] Modify deleteNode
   - Modify deleteNode to use the immediate successor
