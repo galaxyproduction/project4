@@ -26,7 +26,7 @@ public:
   void mirrorImage(TreeType& t);
 
 private:
-  TreeNode* ptrToSucessor(TreeNode*& tree) const;
+  TreeNode* ptrToSuccessor(TreeNode*& tree) const;
 
   TreeNode* root;
 };

@@ -180,13 +180,13 @@ void DeleteNode(TreeNode *&tree)
   }
 }
 
-TreeNode* TreeType::ptrToSucessor(TreeNode*& tree) const {
+TreeNode* TreeType::ptrToSuccessor(TreeNode*& tree) const {
   if(tree == NULL) return NULL;
 
   if(tree->left == NULL) 
     return tree;
 
-  return ptrToSucessor(tree->left);
+  return ptrToSuccessor(tree->left);
 }
 
 //Helper function for DeleteNode
