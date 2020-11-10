@@ -180,6 +180,15 @@ void DeleteNode(TreeNode *&tree)
   }
 }
 
+TreeNode* TreeType::ptrToSucessor(TreeNode*& tree) const {
+  if(tree == NULL) return NULL;
+
+  if(tree->left == NULL) 
+    return tree;
+
+  return ptrToSucessor(tree->left);
+}
+
 //Helper function for DeleteNode
 void GetPredecessor(TreeNode *tree, ItemType &data)
 // Sets data to the info member of the right-most node in tree.

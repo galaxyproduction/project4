@@ -3,7 +3,7 @@
   - Print tree level by level visually
 - [x] Add preOrderPrint and postOrderPrint
   - Print items in respective order separted by spaces
-- [ ] Add ptrToSuccessor
+- [x] Add ptrToSuccessor
   - Finds the node with the smallest key value in the tree
 - [ ] Add getSuccessor
   - returns the logical successor of item
