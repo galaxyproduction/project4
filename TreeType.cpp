@@ -238,13 +238,13 @@ void PrintAncestorsHelper(const TreeNode* tree, int value) {
     return;
   }
 
+  cout << tree->info << ' ';
+
   if(tree->info > value) {
     PrintAncestorsHelper(tree->left, value);
   } else {
     PrintAncestorsHelper(tree->right, value);
   }
-
-  cout << tree->info << ' ';
 }
 
 void TreeType::PrintAncestors(int value)
@@ -258,7 +258,7 @@ void TreeType::PrintAncestors(int value)
     PrintAncestorsHelper(root, value);
     cout << endl;
   } else {
-    cout << "Item is not in the tree" << endl;
+    cout << value << " is not in the tree" << endl;
   }
 }
 
