@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 #include "TreeType.h"
 struct TreeNode
@@ -207,21 +208,25 @@ void TreeType::Print() const
   inOrderTraverse(root);
 }
 
-void preOrderPrintHelper(const TreeNode* tree) {
-  if(tree == NULL) return;
+void preOrderPrintHelper(const TreeNode *tree)
+{
+  if (tree == NULL)
+    return;
   cout << tree->info << ' ';
   preOrderPrintHelper(tree->left);
   preOrderPrintHelper(tree->right);
 }
 
 void TreeType::PreOrderPrint() const
-{ 
+{
   preOrderPrintHelper(root);
   cout << '\n';
 }
 
-void postOrderPrintHelper(const TreeNode* tree) {
-  if(tree == NULL) return;
+void postOrderPrintHelper(const TreeNode *tree)
+{
+  if (tree == NULL)
+    return;
   postOrderPrintHelper(tree->left);
   postOrderPrintHelper(tree->right);
   cout << tree->info << ' ';
@@ -233,53 +238,63 @@ void TreeType::PostOrderPrint() const
   cout << '\n';
 }
 
-void PrintAncestorsHelper(const TreeNode* tree, int value) {
-  if(tree->info == value) {
+void PrintAncestorsHelper(const TreeNode *tree, int value)
+{
+  if (tree->info == value)
+  {
     return;
   }
 
   cout << tree->info << ' ';
 
-  if(tree->info > value) {
+  if (tree->info > value)
+  {
     PrintAncestorsHelper(tree->left, value);
-  } else {
+  }
+  else
+  {
     PrintAncestorsHelper(tree->right, value);
   }
 }
 
 void TreeType::PrintAncestors(int value)
 {
-  if(root->info == value)
+  if (root->info == value)
     cout << value << " is the root value, No ancestor" << endl;
 
   bool hasItem = true;
   GetItem(value, hasItem);
-  if(hasItem) {
+  if (hasItem)
+  {
     PrintAncestorsHelper(root, value);
     cout << endl;
-  } else {
+  }
+  else
+  {
     cout << value << " is not in the tree" << endl;
   }
 }
 
-TreeNode* TreeType::ptrToSuccessor(TreeNode*& tree) const {
-  if(tree == NULL)
+TreeNode *TreeType::ptrToSuccessor(TreeNode *&tree) const
+{
+  if (tree == NULL)
     return NULL;
 
-  if(tree->left == NULL) 
+  if (tree->left == NULL)
     return tree;
 
   return ptrToSuccessor(tree->left);
 }
 
-TreeNode* findItem(TreeNode* tree, int value) {
-  if(tree == NULL)
+TreeNode *findItem(TreeNode *tree, int value)
+{
+  if (tree == NULL)
     throw ItemNotFound();
 
-  if(tree->info == value)
+  if (tree->info == value)
     return tree;
 
-  if(tree->info > value)
+  if (tree->info > value)
     return findItem(tree->left, value);
 
   return findItem(tree->right, value);
@@ -287,33 +302,40 @@ TreeNode* findItem(TreeNode* tree, int value) {
 
 int TreeType::GetSuccessor(int value)
 {
-  TreeNode* item = findItem(root, value);
+  TreeNode *item = findItem(root, value);
 
-  if(item->right == NULL)
+  if (item->right == NULL)
     return NULL;
 
-  TreeNode* successor = ptrToSuccessor(item->right);
+  TreeNode *successor = ptrToSuccessor(item->right);
   return successor->info;
 }
 
 // helper function for Mirror Image
 void mirror(TreeNode *&copy, const TreeNode *originalTree)
 // Post: copy is the root of a tree that is a mirror Image of originalTree.
-{ 
-  if(originalTree == NULL) return;
+{
+  if (originalTree == NULL)
+    return;
 
   copy->info = originalTree->info;
-  if(originalTree->right != NULL) {
+  if (originalTree->right != NULL)
+  {
     copy->left = new TreeNode;
     mirror(copy->left, originalTree->right);
-  } else {
+  }
+  else
+  {
     copy->left = NULL;
   }
 
-  if(originalTree->left != NULL) {
+  if (originalTree->left != NULL)
+  {
     copy->right = new TreeNode;
     mirror(copy->right, originalTree->left);
-  } else {
+  }
+  else
+  {
     copy->right = NULL;
   }
 }
@@ -369,20 +391,87 @@ void TreeType::operator=(const TreeType &originalTree)
   }
 }
 
-void LevelOrderPrintHelper(const TreeNode* tree, int offset) {
-  if(tree == NULL) return;
-  offset += 1;
-  LevelOrderPrintHelper(tree->right, offset);
+int height(const TreeNode *tree)
+{
+  if (tree == NULL)
+    return 0;
 
-  for(int i = 1; i < offset; i++) {
-    cout << '\t';
-  }
+  return 1 + max(height(tree->left), height(tree->right));
+}
 
-  cout << tree->info << endl;
-  LevelOrderPrintHelper(tree->left, offset);
+int pow(int a, int b)
+{
+  if (b == 0)
+    return 1;
+  if (b == 1)
+    return a;
+
+  return a * pow(a, b - 1);
 }
 
 void TreeType::LevelOrderPrint() const
 {
-  LevelOrderPrintHelper(root, 0);
+  if (root == NULL)
+    return;
+
+  int treeHeight = height(root);
+  int length = GetLength();
+  int nodesPrinted = 1;
+  int nodes = 0;
+  int level = 0;
+  QueType<TreeNode *> queue;
+
+  queue.Enqueue(root);
+
+  TreeNode *node;
+  while (!queue.IsEmpty())
+  {
+    if (nodes >= length)
+      break;
+    if (nodesPrinted == pow(2, level))
+    {
+      for (int i = 0; i < treeHeight - level; i++)
+      {
+        cout << ' ';
+      }
+    }
+
+    queue.Dequeue(node);
+    if (node != NULL)
+    {
+      cout << node->info << ' ';
+      queue.Enqueue(node->left);
+      queue.Enqueue(node->right);
+
+      nodes++;
+    }
+    else
+    {
+      cout << '-' << ' ';
+    }
+
+    if (nodesPrinted == pow(2, level + 1) - 1)
+    {
+      cout << endl;
+      if (nodes >= length)
+        return;
+
+      for (int i = 0; i < treeHeight - level - 1; i++)
+      {
+        cout << ' ';
+      }
+
+      for (int i = 0; i < level + 1; i++)
+      {
+        cout << "/ \\ ";
+      }
+
+      cout << endl;
+      level++;
+    }
+
+    nodesPrinted++;
+  }
+
+  cout << endl;
 }
