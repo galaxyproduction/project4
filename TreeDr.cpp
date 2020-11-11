@@ -1,12 +1,15 @@
 // Test driver
-
 #include <string>
 #include <cctype>
 #include <cstring>
 #include "TreeType.h"
 #include <iostream>
+
 using namespace std;
+
 TreeType makeTree(int arr[], int size);
+void makeTreeHelper(int arr[], int start, int end, TreeType &tree);
+
 int main()
 {
 	string command; // operation to be executed
@@ -101,14 +104,20 @@ int main()
 		{
 			inFile >> item;
 			cout << "Logical successor of " << item << " is: ";
-			try {
+			try
+			{
 				int successor = tree.GetSuccessor(item);
-				if(successor != NULL) {
+				if (successor != NULL)
+				{
 					cout << successor << endl;
-				} else {
+				}
+				else
+				{
 					cout << "NULL\n-99999" << endl;
 				}
-			} catch (ItemNotFound inf) {
+			}
+			catch (ItemNotFound inf)
+			{
 				cout << "Item was not in the tree\n-99999" << endl;
 			}
 		}
@@ -160,16 +169,28 @@ int main()
 	return 0;
 }
 
-void makeTreeHelper(int arr[], int start, int end, TreeType& tree) {
-	if(end - start < 0) return;
+// Helper recursive function for makeTree
+// The balanced tree will be contained within the tree variable
+// Start and end are the indexes of a subset of arr
+void makeTreeHelper(int arr[], int start, int end, TreeType &tree)
+{
+	if (end - start < 0)
+		return;
+
+	cout << start << ' ' << end << endl;
+
+	// Middle index of the subset
 	int middle = (end + start) / 2;
-	
+
+	// Puts middle item into the tree
 	tree.PutItem(arr[middle]);
 
+	// Recursivly divides arr into two subsets and adds them to the tree
 	makeTreeHelper(arr, start, middle - 1, tree);
 	makeTreeHelper(arr, middle + 1, end, tree);
 }
 
+// Creates a balanced BST from a sorted array
 TreeType makeTree(int arr[], int size)
 {
 	TreeType balancedTree;
