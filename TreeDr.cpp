@@ -2,20 +2,20 @@
 #include <string>
 #include <cctype>
 #include <cstring>
-#include "TreeType.h"
+#include "TreeType.cpp"
 #include <iostream>
 
 using namespace std;
 
-TreeType makeTree(int arr[], int size);
-void makeTreeHelper(int arr[], int start, int end, TreeType &tree);
+TreeType<int> makeTree(int arr[], int size);
+void makeTreeHelper(int arr[], int start, int end, TreeType<int> &tree);
 
 int main()
 {
 	string command; // operation to be executed
 
 	int item;
-	TreeType tree;
+	TreeType<int> tree;
 	bool found;
 	ifstream inFile;
 	inFile.open("input.txt");
@@ -144,7 +144,7 @@ int main()
 			tree.PutItem(20);
 			cout << "\nOriginal Tree before mirroring:\n";
 			tree.LevelOrderPrint();
-			TreeType mirrorOftree;
+			TreeType<int> mirrorOftree;
 			tree.mirrorImage(mirrorOftree);
 			cout << "Original Tree After Mirroring:\n";
 			tree.LevelOrderPrint();
@@ -174,7 +174,7 @@ int main()
 // Helper recursive function for makeTree
 // The balanced tree will be contained within the tree variable
 // Start and end are the indexes of a subset of arr
-void makeTreeHelper(int arr[], int start, int end, TreeType &tree)
+void makeTreeHelper(int arr[], int start, int end, TreeType<int> &tree)
 {
 	if (end - start < 0)
 		return;
@@ -191,9 +191,9 @@ void makeTreeHelper(int arr[], int start, int end, TreeType &tree)
 }
 
 // Creates a balanced BST from a sorted array
-TreeType makeTree(int arr[], int size)
+TreeType<int> makeTree(int arr[], int size)
 {
-	TreeType balancedTree;
+	TreeType<int> balancedTree;
 	makeTreeHelper(arr, 0, size - 1, balancedTree);
 
 	return balancedTree;

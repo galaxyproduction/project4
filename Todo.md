@@ -15,3 +15,4 @@
   - Returns the mirror image of the original tree
 - [x] Write makeTree
   - Creates BST from sorted array
+- [x] Rewrite TreeType to template function

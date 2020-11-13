@@ -1,12 +1,13 @@
 #include <string>
 #include <fstream>
 
-typedef int ItemType;
+template<class T>
 struct TreeNode;
 class ItemNotFound {};
 
 #include "QueType.cpp"
 
+template<class T>
 class TreeType
 {
 public:
@@ -17,20 +18,20 @@ public:
   bool IsEmpty() const;
   bool IsFull() const;
   int GetLength() const;
-  ItemType GetItem(ItemType item, bool &found);
-  void PutItem(ItemType item);
-  void DeleteItem(ItemType item);
+  T GetItem(T item, bool &found);
+  void PutItem(T item);
+  void DeleteItem(T item);
   void operator=(const TreeType &originalTree);
   void Print() const;
   void LevelOrderPrint() const;
-  void PrintAncestors(int value);
+  void PrintAncestors(T value);
   void PreOrderPrint() const;
   void PostOrderPrint() const;
-  int GetSuccessor(int value);
+  T GetSuccessor(T value);
   void mirrorImage(TreeType &t);
 
 private:
-  TreeNode *ptrToSuccessor(TreeNode *&tree) const;
+  TreeNode<T> *ptrToSuccessor(TreeNode<T> *&tree) const;
 
-  TreeNode *root;
+  TreeNode<T> *root;
 };
