@@ -21,6 +21,8 @@ int main()
 	inFile.open("input.txt");
 	inFile >> command;
 
+	cout << "This project is done by Hunter Wilkins." << endl;
+
 	while (command != "Quit")
 	{
 
@@ -176,8 +178,6 @@ void makeTreeHelper(int arr[], int start, int end, TreeType &tree)
 {
 	if (end - start < 0)
 		return;
-
-	cout << start << ' ' << end << endl;
 
 	// Middle index of the subset
 	int middle = (end + start) / 2;
