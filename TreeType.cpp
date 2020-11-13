@@ -18,6 +18,7 @@ void PrintAncestorsHelper(const TreeNode *tree, int value);
 void postOrderPrintHelper(const TreeNode *tree);
 int pow(int a, int b);
 void preOrderPrintHelper(const TreeNode *tree);
+TreeNode* ptrToSuccessorHelper(TreeNode*& tree);
 void Retrieve(TreeNode *tree, ItemType &item, bool &found);
 
 struct TreeNode
@@ -178,9 +179,9 @@ void DeleteNode(TreeNode *&tree)
   }
   else
   {
-    GetPredecessor(tree->left, data);
-    tree->info = data;
-    Delete(tree->left, data); // Delete predecessor node.
+    TreeNode* succesor = ptrToSuccessorHelper(tree->right);
+    tree->info = succesor->info;
+    Delete(tree->right, succesor->info); // Delete predecessor node.
   }
 }
 
@@ -287,15 +288,19 @@ void TreeType::PrintAncestors(int value)
   }
 }
 
-TreeNode *TreeType::ptrToSuccessor(TreeNode *&tree) const
-{
+TreeNode* ptrToSuccessorHelper(TreeNode*& tree) {
   if (tree == NULL)
     return NULL;
 
   if (tree->left == NULL)
     return tree;
 
-  return ptrToSuccessor(tree->left);
+  return ptrToSuccessorHelper(tree->left);
+}
+
+TreeNode *TreeType::ptrToSuccessor(TreeNode *&tree) const
+{
+  return ptrToSuccessorHelper(tree);
 }
 
 // Recursive function to find the ptr of a node in the tree

@@ -7,7 +7,7 @@
   - Finds the node with the smallest key value in the tree
 - [x] Add getSuccessor
   - returns the logical successor of item
-- [ ] Modify deleteNode
+- [x] Modify deleteNode
   - Modify deleteNode to use the immediate successor
 - [x] Add printAncestors
   - Prints the ancestors of a given node
