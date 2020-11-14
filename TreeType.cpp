@@ -29,7 +29,7 @@ template<class T>
 void PrintAncestorsHelper(const TreeNode<T> *tree, T value);
 template<class T>
 void postOrderPrintHelper(const TreeNode<T> *tree);
-int pow(int a, int b);
+int power(int a, int b);
 template<class T>
 void preOrderPrintHelper(const TreeNode<T> *tree);
 template<class T>
@@ -364,15 +364,17 @@ TreeNode<T> *findItem(TreeNode<T> *tree, T value)
   return findItem(tree->right, value);
 }
 
+// Finds the node that contains value
+// Return the info in leftmost node in the right subtree of value
 template<class T>
 T TreeType<T>::GetSuccessor(T value)
 {
   TreeNode<T> *item = findItem(root, value);
-
-  if (item->right == NULL)
-    return NULL;
-
   TreeNode<T> *successor = ptrToSuccessor(item->right);
+  
+  if(successor == NULL)
+    throw NullSuccessor();
+  
   return successor->info;
 }
 
@@ -561,3 +563,5 @@ void TreeType<T>::LevelOrderPrint() const
 
   cout << endl;
 }
+
+template class TreeType<int>;

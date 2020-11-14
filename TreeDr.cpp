@@ -2,7 +2,7 @@
 #include <string>
 #include <cctype>
 #include <cstring>
-#include "TreeType.cpp"
+#include "TreeType.h"
 #include <iostream>
 
 using namespace std;
@@ -109,18 +109,14 @@ int main()
 			try
 			{
 				int successor = tree.GetSuccessor(item);
-				if (successor != NULL)
-				{
-					cout << successor << endl;
-				}
-				else
-				{
-					cout << "NULL\n-99999" << endl;
-				}
+				cout << successor << endl;
 			}
 			catch (ItemNotFound inf)
 			{
 				cout << "Item was not in the tree\n-99999" << endl;
+			} 
+			catch (NullSuccessor ns) {
+				cout << "NULL\n-99999" << endl;
 			}
 		}
 		//13

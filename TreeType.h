@@ -1,9 +1,12 @@
+#ifndef TREETYPEH
+#define TREETYPEH
 #include <string>
 #include <fstream>
 
 template<class T>
 struct TreeNode;
 class ItemNotFound {};
+class NullSuccessor {};
 
 #include "QueType.cpp"
 
@@ -35,3 +38,5 @@ private:
 
   TreeNode<T> *root;
 };
+
+#endif
